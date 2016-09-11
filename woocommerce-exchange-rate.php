@@ -14,7 +14,8 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly
 }
 
-//define('WC_EXCHANGE_RATE_PLUGIN_URL', plugin_dir_url(__FILE__));
+//Help handle assets
+define('WC_EXCHANGE_RATE_PLUGIN_URL', plugin_dir_url(__FILE__));
 
 /**
  * Includes autoloader

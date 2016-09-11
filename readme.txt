@@ -13,7 +13,7 @@ Allows to add exchange rates for WooCommerce currencies
 
 == Description ==
 
-WooCommerce Exchange Rate plugin allows to setup exchange rates for WooCommerce currencies and display to end-user product price for depending on currency.
+WooCommerce Exchange Rate plugin allows to setup exchange rates for WooCommerce currencies and display to end-user product price depending on currency.
 
 == Installation ==
 

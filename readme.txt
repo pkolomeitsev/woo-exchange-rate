@@ -1,4 +1,3 @@
-
 === WooCommerce Exchange Rate ===
 Contributors: pkolomeitsev
 Tags: woocommerce, currency, exchage

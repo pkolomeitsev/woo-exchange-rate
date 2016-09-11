@@ -34,7 +34,7 @@ Please check if WooCommerce plugin already installed before to start.
 
 1. WooCommerce Exchange Rate plugin settings screen
 2. WooCommerce Exchange Rate plugin widget screen
-3. Frontend plugin wirk in action
+3. Frontend plugin work in action
 
 == Changelog ==
 

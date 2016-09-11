@@ -32,7 +32,9 @@ Please check if WooCommerce plugin already installed before to start.
 
 == Screenshots ==
 
-comming soon
+1. WooCommerce Exchange Rate plugin settings screen
+2. WooCommerce Exchange Rate plugin widget screen
+3. Frontend plugin wirk in action
 
 == Changelog ==
 

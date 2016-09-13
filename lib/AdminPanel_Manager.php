@@ -24,7 +24,7 @@ class AdminPanel_Manager {
     }
 
     public function setup_sections($sections) {
-        $sections[Exchange_Rate_Settings_Page::SECTION] = __('Exchange Rates', 'woocommerce-exchange-rate');
+        $sections[Exchange_Rate_Settings_Page::SECTION] = __('Exchange Rates', 'woo-exchange-rate');
         return $sections;
     }
 
@@ -43,7 +43,7 @@ class AdminPanel_Manager {
     }
 
 //    public function get_section_reports() {
-//        $sections[Exchange_Rate_Settings_Page::SECTION] = __('Exchange rates', 'woocommerce-exchange-rate');
+//        $sections[Exchange_Rate_Settings_Page::SECTION] = __('Exchange rates', 'woo-exchange-rate');
 //        var_dump($sections);
 //        return $sections;
 //    }

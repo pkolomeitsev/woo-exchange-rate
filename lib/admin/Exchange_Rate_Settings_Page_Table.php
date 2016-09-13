@@ -28,7 +28,7 @@ class Exchange_Rate_Settings_Page_Table extends \WP_List_Table {
         return array(
             'cb' => '<input type="checkbox" />',
             'currency_code' => __('Currency', 'woocommerce'),
-            'currency_exchange_rate' => __('Exchange rate', 'woocommerce-exchange-rate'),
+            'currency_exchange_rate' => __('Exchange rate', 'woo-exchange-rate'),
         );
     }
 

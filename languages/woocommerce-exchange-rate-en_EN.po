@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: woocommerce-exchange-rate\n"
+"Project-Id-Version: woo-exchange-rate\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-05 17:00+0300\n"
 "PO-Revision-Date: 2016-09-05 01:22+0300\n"

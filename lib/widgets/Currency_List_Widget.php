@@ -13,10 +13,10 @@ if (!defined('ABSPATH')) {
 class Currency_List_Widget extends \WC_Widget {
 
     public function __construct() {
-        $this->widget_id = 'wc_exchange_rate_widget';
-        $this->widget_name = __('WooCommerce Exchange Rage plugin widget', 'woocommerce-exchange-rate');
-        $this->widget_cssclass = 'wc_exchage_rate currency_list';
-        $this->widget_description = __("Display currency switcher (as dropdown list).", 'woocommerce-exchange-rate');
+        $this->widget_id = 'woo_exchange_rate_widget';
+        $this->widget_name = __('WooCommerce Exchange Rage plugin widget', 'woo-exchange-rate');
+        $this->widget_cssclass = 'woo_exchage_rate currency_list';
+        $this->widget_description = __("Display currency switcher (as dropdown list).", 'woo-exchange-rate');
 
         parent::__construct();
     }

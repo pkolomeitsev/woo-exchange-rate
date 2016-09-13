@@ -62,9 +62,9 @@ class Exchange_Rate_Settings_Page {
      * Table list output.
      */
     public function table_list_output() {
-        echo '<h2>' . __('Exchange Rates', 'woocommerce-exchange-rate') .
+        echo '<h2>' . __('Exchange Rates', 'woo-exchange-rate') .
         '<a href="' . $this->add_button_url . '" class="add-new-h2">' .
-        __('Add currency exchange rate', 'woocommerce-exchange-rate') .
+        __('Add currency exchange rate', 'woo-exchange-rate') .
         '</a></h2>';
 
         $table_list = new Exchange_Rate_Settings_Page_Table();
@@ -85,9 +85,9 @@ class Exchange_Rate_Settings_Page {
         $settings = array();
 
         $settings[] = array(
-            'name' => __('Currency Settings', 'woocommerce-exchange-rate'),
+            'name' => __('Currency Settings', 'woo-exchange-rate'),
             'type' => 'title',
-            //'description' => __('Currency Details description', 'woocommerce-exchange-rate'),
+            //'description' => __('Currency Details description', 'woo-exchange-rate'),
             'id' => 'title');
         
         $currencies = wooer_currencies_list();
@@ -102,14 +102,14 @@ class Exchange_Rate_Settings_Page {
         );
         
         $settings[] = array(
-            'name' => __('Exchange rate', 'woocommerce-exchange-rate'),
+            'name' => __('Exchange rate', 'woo-exchange-rate'),
             'id' => 'currency_exchange_rate',
             'type' => 'text',
             'css' => 'width:350px;',
             'default' => isset($data['id']) ? $data['currency_exchange_rate'] : '',
         );
 
-        $settings[] = array('type' => 'sectionend', 'id' => 'woocommerce-exchange-rate');
+        $settings[] = array('type' => 'sectionend', 'id' => 'woo-exchange-rate');
         // Output settings fields
         \WC_Admin_Settings::output_fields($settings);
 
@@ -159,7 +159,7 @@ class Exchange_Rate_Settings_Page {
     public function notices() {
         
         if (isset($_GET['removed']) && 1 == $_GET['removed']) {
-            \WC_Admin_Settings::add_message(__('Exchange rate successfully removed', 'woocommerce-exchange-rate'));
+            \WC_Admin_Settings::add_message(__('Exchange rate successfully removed', 'woo-exchange-rate'));
         }
         if (isset($_GET['saved']) && 1 == $_GET['saved']) {
             \WC_Admin_Settings::add_message(__('Your settings have been saved', 'woocommerce'));

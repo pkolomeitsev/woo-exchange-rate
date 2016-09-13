@@ -22,7 +22,7 @@ function wooer_currencies_list() {
 
 function wooer_startup_error() {
     $class = 'notice notice-error';
-    $message = 'WooCommerce Exchange Rate plugin error: ' . __('WooCommerce plugin is not activated!', 'woocommerce-exchange-rate');
+    $message = 'WooCommerce Exchange Rate plugin error: ' . __('WooCommerce plugin is not activated!', 'woo-exchange-rate');
 
     printf('<div class="%1$s"><p>%2$s</p></div>', $class, $message);
 }

@@ -60,8 +60,8 @@ class Main {
      * Load plugin textdomain.
      */
     public function load_textdomain() {
-        $file = 'woocommerce-exchange-rate';
-        load_plugin_textdomain('woocommerce-exchange-rate', false, $file . '/languages/');
+        $file = 'woo-exchange-rate';
+        load_plugin_textdomain('woo-exchange-rate', false, $file . '/languages/');
     }
 
 }

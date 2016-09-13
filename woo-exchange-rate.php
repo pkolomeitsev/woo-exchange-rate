@@ -1,7 +1,7 @@
 <?php
 /*
  * Plugin Name: Woo Exchange Rate
- * Description: Allows to add exchange rates for WooCommerce currencies 
+ * Description: Allows to add exchange rates for WooCommerce 
  * 
  * Text Domain: woo-exchange-rate
  * 

@@ -8,11 +8,11 @@ Stable tag: 0.2.0-beta
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Allows to add exchange rates for WooCommerce currencies
+Allows to add exchange rates for WooCommerce
 
 == Description ==
 
-Woo Exchange Rate plugin allows to setup exchange rates for WooCommerce currencies and display to end-user product price depending on currency.
+Woo Exchange Rate plugin allows to setup exchange rates for WooCommerce and display to end-user product price depending on currency.
 
 == Installation ==
 

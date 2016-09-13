@@ -14,7 +14,7 @@ class Currency_List_Widget extends \WC_Widget {
 
     public function __construct() {
         $this->widget_id = 'woo_exchange_rate_widget';
-        $this->widget_name = __('WooCommerce Exchange Rage plugin widget', 'woo-exchange-rate');
+        $this->widget_name = __('Woo Exchange Rage plugin widget', 'woo-exchange-rate');
         $this->widget_cssclass = 'woo_exchage_rate currency_list';
         $this->widget_description = __("Display currency switcher (as dropdown list).", 'woo-exchange-rate');
 

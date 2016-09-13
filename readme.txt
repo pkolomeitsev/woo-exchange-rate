@@ -32,7 +32,7 @@ Please check if WooCommerce plugin already installed before to start.
 == Screenshots ==
 
 1. Woo Exchange Rate plugin settings screen
-2. Woo Exchange Rate plugin widget screen
+2. Woo Exchange Rate plugin widget screen (StoreFront theme)
 3. Frontend plugin work in action
 
 == Changelog ==

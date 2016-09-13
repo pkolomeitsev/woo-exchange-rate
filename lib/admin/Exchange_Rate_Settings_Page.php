@@ -12,7 +12,7 @@ if (!defined('ABSPATH')) {
 class Exchange_Rate_Settings_Page {
 
     const TAB = 'products';
-    const SECTION = 'wc-exchange-rate';
+    const SECTION = 'woo-exchange-rate';
     
     private $home_url;
     private $add_button_url;
@@ -204,7 +204,7 @@ class Exchange_Rate_Settings_Page {
     /**
      * Bulk remove
      *
-     * @param array $keys
+     * @param array $ids
      */
     private function bulk_remove($ids) {
         foreach ($ids as $id) {

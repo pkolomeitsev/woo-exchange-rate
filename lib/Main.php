@@ -31,9 +31,9 @@ class Main {
     }
 
     public function register_js() {
-        wp_enqueue_script('ajax-script', WC_EXCHANGE_RATE_PLUGIN_URL . 'assets/js/wc-exchange-rate.js', array('jquery'));
-        // in JavaScript, object properties are accessed as wc-exchange-rate.ajax_url
-        wp_localize_script('ajax-script', 'wc_exchange_rate', array('ajax_url' => admin_url('admin-ajax.php')));
+        wp_enqueue_script('ajax-script', WC_EXCHANGE_RATE_PLUGIN_URL . 'assets/js/woo-exchange-rate.js', array('jquery'));
+        // in JavaScript, object properties are accessed as woo-exchange-rate.ajax_url
+        wp_localize_script('ajax-script', 'woo_exchange_rate', array('ajax_url' => admin_url('admin-ajax.php')));
     }
 
     /**

@@ -51,10 +51,10 @@ class Currency_List_Widget extends \WC_Widget {
             'type' => 'select',
             'options' => $list_data,
             'default' => Currency_Manager::get_currency_code(),
-            'class' => 'wc-currency-select'
+            'class' => 'woo-currency-select'
         );
 
-        $settings[] = array('type' => 'sectionend', 'id' => 'wc-exchange-rate');
+        $settings[] = array('type' => 'sectionend', 'id' => 'woo-exchange-rate');
 
         // Output widget
         echo '<div class="currency_wrapper">';

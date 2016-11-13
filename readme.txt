@@ -12,7 +12,16 @@ Allows to add exchange rates for WooCommerce
 
 == Description ==
 
-Woo Exchange Rate plugin allows to setup exchange rates for WooCommerce and display to end-user product price depending on currency.
+Woo Exchange Rate Plugin - is a simple plugin, which allows to setup currency exchange rates for WooCommerce products.
+End-user can buy products from your WooCommerce shop using different currencies.
+
+All currencies info are based on WooCommerce core.
+
+Features:
+
+- Setup currency exchange rates from control panel
+- Diplay currency switcher to end user
+- Store order with selected currency
 
 == Installation ==
 
@@ -21,8 +30,8 @@ Please check if WooCommerce plugin already installed before to start.
 
 1. Upload the plugin files to the `/wp-content/plugins/woo-exchange-rate` directory, or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the 'Plugins' screen in WordPress
-3. Use the WooCommenrce->Settings->Products->Exchange Rate screen to configure currencies exchange rates
-4. Use the Appearence->Widgets add Woo Exchange Rage plugin widget to sidebar
+3. Use the `WooCommenrce->Settings->Products->Exchange` Rate screen to configure currencies exchange rates
+4. Use the `Appearence->Widgets` add Woo Exchange Rage plugin widget to sidebar
 
 == Translations ==
 
@@ -37,5 +46,9 @@ Please check if WooCommerce plugin already installed before to start.
 
 == Changelog ==
 
-comming soon
+= 0.2.0 =
+22.09.2016 - released stable version
+
+= 0.2.0-beta =
+16.09.2016 - first released with beta version
 

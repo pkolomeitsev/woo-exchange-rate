@@ -28,6 +28,7 @@ class Exchange_Rate_Settings_Page_Table extends \WP_List_Table {
         return array(
             'cb' => '<input type="checkbox" />',
             'currency_code' => __('Currency', 'woocommerce'),
+            'currency_pos' => __( 'Currency Position', 'woocommerce' ),
             'currency_exchange_rate' => __('Exchange rate', 'woo-exchange-rate'),
         );
     }
@@ -78,6 +79,18 @@ class Exchange_Rate_Settings_Page_Table extends \WP_List_Table {
         $output .= '<div class="row-actions">' . implode(' | ', $row_actions) . '</div>';
 
         return $output;
+    }
+    
+    /**
+     * Column currency_pos.
+     *
+     * @param  array $key
+     * @return string
+     */
+    public function column_currency_pos($key) {
+        $symbol = get_woocommerce_currency_symbol($key['currency_code']);
+        $position_list = Currency_Manager::wooer_currency_pos_list($symbol);
+        return $position_list[$key['currency_pos']];
     }
 
     /**

@@ -110,9 +110,9 @@ class Exchange_Rate_Model {
         $id = $data['id'];
         //id - is auto inrement primary key field does not update/insert
         unset($data['id']);
-        return isset($id) ?
-                $this->db->update($this->table_name, $data, array('id' => $id), array('%s', '%f'), array('%d')) :
-                $this->db->insert($this->table_name, $data, array('%s', '%f'));
+        return isset($id) 
+            ? $this->db->update($this->table_name, $data, array('id' => $id), array('%s', '%s', '%f'), array('%d'))
+            : $this->db->insert($this->table_name, $data, array('%s', '%s', '%f'));
     }
 
     public function delete($id) {

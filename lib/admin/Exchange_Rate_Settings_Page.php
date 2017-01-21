@@ -83,14 +83,14 @@ class Exchange_Rate_Settings_Page {
      */
     public function edit_form_output($data = null) {
         $settings = array();
+        $currencies = Currency_Manager::wooer_currencies_list();
+        $currency_pos = Currency_Manager::wooer_currency_pos_list();
 
         $settings[] = array(
             'name' => __('Currency Settings', 'woo-exchange-rate'),
             'type' => 'title',
             //'description' => __('Currency Details description', 'woo-exchange-rate'),
             'id' => 'title');
-        
-        $currencies = wooer_currencies_list();
 
         $settings[] = array(
             'name' => __('Currency', 'woocommerce'),
@@ -102,11 +102,24 @@ class Exchange_Rate_Settings_Page {
         );
         
         $settings[] = array(
+            'name' => __( 'Currency Position', 'woocommerce' ),
+            'desc' => __('This controls the position of the currency symbol.', 'woocommerce'),
+            'id' => 'currency_pos',
+            'type' => 'select',
+            'options' => $currency_pos,
+            'default' => isset($data['id']) ? $data['currency_pos'] : 'left',
+            'class' => 'wc-enhanced-select',
+            'desc_tip' =>  true,
+        );
+        
+        $settings[] = array(
             'name' => __('Exchange rate', 'woo-exchange-rate'),
+            'desc' => __('Decimal Separator', 'woocommerce') . ' "."',
             'id' => 'currency_exchange_rate',
             'type' => 'text',
             'css' => 'width:350px;',
             'default' => isset($data['id']) ? $data['currency_exchange_rate'] : '',
+            'desc_tip' =>  true,
         );
 
         $settings[] = array('type' => 'sectionend', 'id' => 'woo-exchange-rate');
@@ -228,13 +241,14 @@ class Exchange_Rate_Settings_Page {
      */
     private function save() {
         // Verify request params
-        if (array_diff(array('currency_code', 'currency_exchange_rate'), array_keys($_REQUEST))) {
+        if (array_diff(array('currency_code', 'currency_exchange_rate', 'currency_pos'), array_keys($_REQUEST))) {
             return false;
         }
 
         $data = [
             'id' => null,
             'currency_code' => $_REQUEST['currency_code'],
+            'currency_pos' => $_REQUEST['currency_pos'],
             'currency_exchange_rate' => $_REQUEST['currency_exchange_rate']
         ];
 

@@ -16,9 +16,6 @@ class AdminPanel_Manager {
         add_filter('woocommerce_get_sections_' . Exchange_Rate_Settings_Page::TAB, array($self, 'setup_sections'));
         add_filter('woocommerce_get_settings_' . Exchange_Rate_Settings_Page::TAB, array($self, 'setup_settings'), 10, 2);
 
-        // Create the section beneath the reports tab (Admin panel)
-//        add_filter('woocommerce_get_sections_orders', array($this, 'get_section_reports'));
-//        add_filter('woocommerce_get_settings_orders', array($this, 'get_settings_reports'), 10, 2);
         // WooCommerce Report tab improvements
         add_filter('woocommerce_reports_get_order_report_data_args', array($self, 'reports_get_order_report_data_args'));
     }
@@ -29,7 +26,10 @@ class AdminPanel_Manager {
     }
 
     public function setup_settings($settings, $current_section = '') {
-        
+        // Do not run full functionality when WC installing/upgrading
+        if (defined('WC_INSTALLING')) {
+            return array();
+        }
         // Check the current section is what we want
         if ($current_section == Exchange_Rate_Settings_Page::SECTION) {
             $wooer_settings = new Exchange_Rate_Settings_Page();
@@ -41,18 +41,6 @@ class AdminPanel_Manager {
         //return standart settings
         return $settings;
     }
-
-//    public function get_section_reports() {
-//        $sections[Exchange_Rate_Settings_Page::SECTION] = __('Exchange rates', 'woo-exchange-rate');
-//        var_dump($sections);
-//        return $sections;
-//    }
-//
-//    public function get_settings_reports($settings, $current_section) {
-//
-//        //return standart settings
-//        return $settings;
-//    }
 
     /**
      * Filtering reports by selected currency

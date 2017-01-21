@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: woo-exchange-rate\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-05 17:00+0300\n"
-"PO-Revision-Date: 2016-09-14 01:34+0300\n"
+"PO-Revision-Date: 2017-01-15 20:24+0200\n"
 "Last-Translator: pkolomeitsev\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
 "Language-Team: pkolomeitsev\n"
-"X-Generator: Poedit 1.8.9\n"
+"X-Generator: Poedit 1.8.11\n"
 "X-Poedit-SearchPath-0: ..\n"
 
 #. Description of the plugin/theme
@@ -41,11 +41,11 @@ msgstr "Настройки валюты"
 msgid "Exchange rate"
 msgstr "Обменный курс"
 
-#: ../lib/admin/Exchange_Rate_Settings_Page.php:162
+#: ../lib/admin/Exchange_Rate_Settings_Page.php:175
 msgid "Exchange rate successfully removed"
 msgstr "Обменный курс удален"
 
-#: ../lib/admin/Exchange_Rate_Settings_Page.php:165
+#: ../lib/admin/Exchange_Rate_Settings_Page.php:178
 msgid "Your settings have been saved"
 msgstr "Ваши настройки сохранены"
 

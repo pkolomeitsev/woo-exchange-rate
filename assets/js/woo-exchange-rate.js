@@ -17,8 +17,8 @@ jQuery(function($) {
 //            console.log('WOOER plugin log: ' + response);
             //refresh WC mini cart
             window.sessionStorage.removeItem(storage_key);
-            //redirect
-            window.location.href = url;
+            //page reload, not good...
+            location.reload(true);
         });
     });
 });

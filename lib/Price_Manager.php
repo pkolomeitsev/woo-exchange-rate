@@ -25,9 +25,8 @@ class Price_Manager {
      */
     public function get_price($price, $product = null) {
         $precision = get_option('woocommerce_price_num_decimals');
-        $rate = Exchange_Rate_Model::get_instance()->get_exchange_rate_by_code(Currency_Manager::get_currency_code());
         //set to 1 if no rate
-        $rate = $rate ? : 1;
+        $rate = Currency_Manager::get_currency_rate() ?: 1;
         $price = round($price * $rate, $precision);
 
         return $price;
@@ -51,6 +50,7 @@ class Price_Manager {
             'price_format' => get_woocommerce_price_format()
         ))));
 
+        $negative = $price < 0;
         //custom changes
         //price already formated, now clear the old format
         $price = str_replace($thousand_separator, '', $price);

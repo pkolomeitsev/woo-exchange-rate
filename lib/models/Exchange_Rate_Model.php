@@ -48,6 +48,16 @@ class Exchange_Rate_Model {
 			SELECT currency_exchange_rate FROM {$this->table_name} WHERE currency_code LIKE %s
 		", $code));
     }
+    
+    public function get_currency_pos_by_code($code = '') {
+        if (!$code) {
+            throw new Exception('Currency code is not present!');
+        }
+
+       return $this->db->get_var($this->db->prepare("
+			SELECT currency_pos FROM {$this->table_name} WHERE currency_code LIKE %s
+		", $code));
+    }
 
     public function get_count() {
         return $this->db->get_var("SELECT COUNT(id) FROM {$this->table_name};");
@@ -58,14 +68,15 @@ class Exchange_Rate_Model {
      * @param int $id
      * @return array
      */
-    public function get_data_by_id($id) {
+    public function get_data_by_id($id = 0) {
         $empty = array(
             'id' => 0,
             'currency_code' => '',
+            'currency_pos' => '',
             'currency_exchange_rate' => '',
         );
 
-        if (0 == $id) {
+        if (!$id) {
             return $empty;
         }
 
@@ -120,3 +131,5 @@ class Exchange_Rate_Model {
     }
 
 }
+
+//@todo: looks bad

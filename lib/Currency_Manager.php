@@ -8,7 +8,9 @@ if (!defined('ABSPATH')) {
 
 class Currency_Manager {
 
-    const SESSION_KEY = 'currency_code';
+    const SESSION_KEY_CODE = 'currency_code';
+    const SESSION_KEY_POS = 'currency_pos';
+    const CACHEID = 'Currency_Manager_';
 
     public static function init() {
 
@@ -52,7 +54,7 @@ class Currency_Manager {
      * @return string
      */
     public static function get_currency_code() {
-        return isset($_SESSION[self::SESSION_KEY]) ? $_SESSION[self::SESSION_KEY] : get_woocommerce_currency();
+        return isset($_SESSION[self::SESSION_KEY_CODE]) ? $_SESSION[self::SESSION_KEY_CODE] : get_woocommerce_currency();
     }
 
     /**
@@ -60,7 +62,10 @@ class Currency_Manager {
      * @param string $code
      */
     public static function set_currency_code($code) {
-        $_SESSION[self::SESSION_KEY] = $code;
+        $_SESSION[self::SESSION_KEY_CODE] = $code;
+        
+        $position = Exchange_Rate_Model::get_instance()->get_currency_pos_by_code($code);
+        self::set_currency_pos($position);
     }
     
     /**
@@ -92,5 +97,36 @@ class Currency_Manager {
             'left_space' => __('Left with space', 'woocommerce') . ' (' . $currency_symbol . ' 99.99)',
             'right_space' => __('Right with space', 'woocommerce') . ' (99.99 ' . $currency_symbol . ')'
         ];
+    }
+    
+    /**
+     * Get currency position from session
+     * @return string
+     */
+    public static function get_currency_pos()
+    {
+        return isset($_SESSION[self::SESSION_KEY_POS]) ? $_SESSION[self::SESSION_KEY_POS] : get_woocommerce_currency();
+    }
+
+    /**
+     * Set currency position in session
+     * @param string $pos
+     */
+    public static function set_currency_pos($pos)
+    {
+        $_SESSION[self::SESSION_KEY_POS] = $pos;
+    }
+    
+    public static function get_currency_rate() {
+        $code = self::get_currency_code();
+        $cacheID = self::CACHEID . $code;
+        $rate = wp_cache_get($cacheID);
+        
+        if($rate === false) {
+            $rate = Exchange_Rate_Model::get_instance()->get_exchange_rate_by_code($code);
+            wp_cache_set($cacheID, $rate, '', 300);
+        }
+        
+        return $rate;
     }
 }

@@ -131,5 +131,4 @@ class Exchange_Rate_Model {
     }
 
 }
-
 //@todo: looks bad

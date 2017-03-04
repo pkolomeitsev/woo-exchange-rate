@@ -15,7 +15,7 @@ if (!defined('ABSPATH')) {
 }
 
 //Help handle assets
-define('WC_EXCHANGE_RATE_PLUGIN_URL', plugin_dir_url(__FILE__));
+define('WOOER_PLUGIN_URL', plugin_dir_url(__FILE__));
 
 /**
  * Includes autoloader

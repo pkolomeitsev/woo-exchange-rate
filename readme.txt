@@ -50,7 +50,8 @@ Please check if WooCommerce plugin already installed before to start.
 == 17.3 ==
 - Added price position feature
 - Plugin version format changed to MRC (Monthly Release Cycles)
-- Fixed Woocommerce plugin upgrade fatal error
+- Fixed WooCommerce plugin upgrade fatal error
+- Made performance improvements
 - Other bug fixes and refactoring
 
 = 0.2.0 =

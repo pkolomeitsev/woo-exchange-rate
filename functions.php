@@ -22,25 +22,18 @@ function wooer_startup_error() {
 function wooer_install() {
     global $wpdb;
     require_once(ABSPATH . '/wp-admin/includes/plugin.php');
-    $plugin_data = get_plugin_data(__DIR__ . '/woo-exchange-rate.php');
-
+    
     $table_name = Exchange_Rate_Model::get_instance()->get_table_name();
 
     $sql = "CREATE TABLE IF NOT EXISTS " . $table_name . " (
 	  `id` mediumint(9) AUTO_INCREMENT PRIMARY KEY,
 	  `currency_code` varchar(3) NOT NULL,
       `currency_pos` varchar(32) NOT NULL DEFAULT 'left',
-	  `currency_exchange_rate` decimal(6,2) NOT NULL
+	  `currency_exchange_rate` decimal(16,4) NOT NULL
 	);";
     $wpdb->query($sql);
     
-    if(!get_option('wooer_plugin_version')) {
-        add_option('wooer_plugin_version', $plugin_data['Version']);
-        $sql = "ALTER TABLE " . $table_name . " ADD COLUMN `currency_pos` varchar(32) NOT NULL DEFAULT 'left'";
-        $wpdb->query($sql);
-    } else {
-        update_option('wooer_plugin_version', $plugin_data['Version']);
-    }
+    wooer_dvc();
 }
 
 /**
@@ -54,4 +47,30 @@ function wooer_uninstall() {
     $wpdb->query($sql);
     
     delete_option('wooer_plugin_version');
+}
+
+/**
+ * Database Version Control
+ */
+function wooer_dvc() {
+    global $wpdb;
+    $table_name = Exchange_Rate_Model::get_instance()->get_table_name();
+    $plugin_data = get_plugin_data(__DIR__ . '/woo-exchange-rate.php');
+    $wooer_version = get_option('wooer_plugin_version');
+    
+    switch ($wooer_version) {
+        case '17.3':
+            // skip
+            break;
+        // < 17.3
+        default:
+            add_option('wooer_plugin_version', $plugin_data['Version']);
+            $sql = "ALTER TABLE " . $table_name . " ADD COLUMN `currency_pos` varchar(32) NOT NULL DEFAULT 'left'";
+            $wpdb->query($sql);
+            $sql = "ALTER TABLE " . $table_name . " MODIFY `currency_exchange_rate` decimal(16,4) NOT NULL";
+            $wpdb->query($sql);
+            break;
+    }
+
+    update_option('wooer_plugin_version', $plugin_data['Version']);
 }

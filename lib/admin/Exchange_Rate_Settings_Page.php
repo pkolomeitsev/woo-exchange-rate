@@ -83,9 +83,10 @@ class Exchange_Rate_Settings_Page {
      */
     public function edit_form_output($data = null) {
         $settings = array();
+        $currency_code = !empty($data['currency_code']) ? $data['currency_code'] : null;
         $currencies = Currency_Manager::wooer_currencies_list();
-        $currency_pos = Currency_Manager::wooer_currency_pos_list();
-
+        $currency_pos = Currency_Manager::wooer_currency_pos_list(get_woocommerce_currency_symbol($currency_code));
+        
         $settings[] = array(
             'name' => __('Currency Settings', 'woo-exchange-rate'),
             'type' => 'title',
@@ -97,7 +98,7 @@ class Exchange_Rate_Settings_Page {
             'id' => 'currency_code',
             'type' => 'select',
             'options' => $currencies,
-            'default' => isset($data['id']) ? $data['currency_code'] : 'GBP',
+            'default' => !empty($data['id']) ? $data['currency_code'] : get_woocommerce_currency(),
             'class' => 'wc-enhanced-select'
         );
         
@@ -107,7 +108,7 @@ class Exchange_Rate_Settings_Page {
             'id' => 'currency_pos',
             'type' => 'select',
             'options' => $currency_pos,
-            'default' => isset($data['id']) ? $data['currency_pos'] : 'left',
+            'default' => !empty($data['id']) ? $data['currency_pos'] : 'left',
             'class' => 'wc-enhanced-select',
             'desc_tip' =>  true,
         );
@@ -118,10 +119,10 @@ class Exchange_Rate_Settings_Page {
             'id' => 'currency_exchange_rate',
             'type' => 'text',
             'css' => 'width:350px;',
-            'default' => isset($data['id']) ? $data['currency_exchange_rate'] : '',
+            'default' => !empty($data['id']) ? $data['currency_exchange_rate'] : '',
             'desc_tip' =>  true,
         );
-
+        
         $settings[] = array('type' => 'sectionend', 'id' => 'woo-exchange-rate');
         // Output settings fields
         \WC_Admin_Settings::output_fields($settings);

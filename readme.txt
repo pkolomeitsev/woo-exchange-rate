@@ -42,8 +42,10 @@ Please check if WooCommerce plugin already installed before to start.
 == Screenshots ==
 
 1. Woo Exchange Rate plugin settings screen
-2. Woo Exchange Rate plugin widget screen (StoreFront theme)
-3. Frontend plugin work in action
+2. Exchange Rate Add/Edit page
+3. Dropdown with search
+4. Woo Exchange Rate plugin widget screen (StoreFront theme)
+5. Frontend plugin work in action
 
 == Changelog ==
 

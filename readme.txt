@@ -1,7 +1,7 @@
 === Woo Exchange Rate ===
 Contributors: pkolomeitsev
 Tags: woocommerce, currency, exchage
-Plugin URL: https://github.com/pkolomeitsev/woo-exchange-rate
+Plugin URL: https://pkolomeitsev.blogspot.com/
 Requires at least: 4.4
 Tested up to: 4.6
 Stable tag: 17.3
@@ -24,6 +24,8 @@ Features:
 - Display currency switcher to end user
 - Store order with selected currency
 
+The main development is all going on [GitHub](https://github.com/pkolomeitsev/woo-exchange-rate). <br />
+All contributions welcome.
 == Installation ==
 
 WooCommerce Exchange Rate requires initial WooCommerce plugin installation.
@@ -49,9 +51,9 @@ Please check if WooCommerce plugin already installed before to start.
 
 == Changelog ==
 
-== 17.3 ==
+= 17.3 =
 - Added price position feature
-- Increased number of decimals for exchange rates
+- Increased number of decimals for exchange rates to 4
 - Plugin version format changed to MRC (Monthly Release Cycles)
 - Made performance improvements
 - Bug fixes, code refactoring etc.
@@ -61,4 +63,3 @@ Please check if WooCommerce plugin already installed before to start.
 
 = 0.2.0-beta =
 16.09.2016 - first released with beta version
-

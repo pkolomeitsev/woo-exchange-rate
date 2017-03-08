@@ -1,28 +1,31 @@
 === Woo Exchange Rate ===
 Contributors: pkolomeitsev
 Tags: woocommerce, currency, exchage
-Plugin URL: https://github.com/pkolomeitsev/woo-exchange-rate
+Plugin URL: https://pkolomeitsev.blogspot.com/
 Requires at least: 4.4
 Tested up to: 4.6
-Stable tag: 0.2.0
+Stable tag: 17.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Allows to add exchange rates for WooCommerce
+Allows to add exchange rates for WooCommerce store
 
 == Description ==
 
-Woo Exchange Rate Plugin - is a simple plugin, which allows to setup currency exchange rates for WooCommerce products.
-End-user can buy products from your WooCommerce shop using different currencies.
+Woo Exchange Rate Plugin - is a simple plugin, which allows you to change product price according currency exchange rate.
+Default currency must have exchange rate equals 1. All other currencies rates should be set according exchange rate to default one.
+End-user can buy products from your WooCommerce store using different currencies.
 
-All currencies info are based on WooCommerce core.
+All currencies info are based on WooCommerce plugin data.
 
 Features:
-
+ 
 - Setup currency exchange rates from control panel
-- Diplay currency switcher to end user
+- Display currency switcher to end user
 - Store order with selected currency
 
+The main development is all going on [GitHub](https://github.com/pkolomeitsev/woo-exchange-rate). <br />
+All contributions welcome.
 == Installation ==
 
 WooCommerce Exchange Rate requires initial WooCommerce plugin installation.
@@ -41,10 +44,19 @@ Please check if WooCommerce plugin already installed before to start.
 == Screenshots ==
 
 1. Woo Exchange Rate plugin settings screen
-2. Woo Exchange Rate plugin widget screen (StoreFront theme)
-3. Frontend plugin work in action
+2. Exchange Rate Add/Edit page
+3. Dropdown with search
+4. Woo Exchange Rate plugin widget screen (StoreFront theme)
+5. Frontend plugin work in action
 
 == Changelog ==
+
+= 17.3 =
+- Added price position feature
+- Increased number of decimals for exchange rates to 4
+- Plugin version format changed to MRC (Monthly Release Cycles)
+- Made performance improvements
+- Bug fixes, code refactoring etc.
 
 = 0.2.0 =
 22.09.2016 - released stable version
@@ -52,3 +64,7 @@ Please check if WooCommerce plugin already installed before to start.
 = 0.2.0-beta =
 16.09.2016 - first released with beta version
 
+== Upgrade Notice ==
+
+= Upgrade from 0.2.0 to 17.3 =
+Please reactivate plugin after upgrade

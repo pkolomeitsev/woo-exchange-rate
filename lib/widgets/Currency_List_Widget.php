@@ -33,7 +33,7 @@ class Currency_List_Widget extends \WC_Widget {
         $this->widget_start($args, $instance);
 
         $list_data = array();
-        $currencies = Exchange_Rate_Model::get_instance()->select(array('id', 'currency_code'));
+        $currencies = Exchange_Rate_Model::get_instance()->select(array('currency_code'));
 
         if (!$currencies) {
             return;

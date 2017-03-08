@@ -15,6 +15,7 @@ class Price_Manager {
         add_filter('woocommerce_get_price', array($self, 'get_price'), 9999, 2);
         add_filter('wc_price', array($self, 'wc_price'), 9999, 3);
         add_filter('woocommerce_variation_prices', array($self, 'variation_prices'), 9999, 4);
+        add_filter('woocommerce_price_format', array($self, 'price_format'), 9999, 2);
     }
 
     /**
@@ -25,16 +26,16 @@ class Price_Manager {
      */
     public function get_price($price, $product = null) {
         $precision = get_option('woocommerce_price_num_decimals');
-        $rate = Exchange_Rate_Model::get_instance()->get_exchange_rate_by_code(Currency_Manager::get_currency_code());
         //set to 1 if no rate
-        $rate = $rate ? : 1;
+        $rate = Currency_Manager::get_currency_rate() ?: 1;
         $price = round($price * $rate, $precision);
 
         return $price;
     }
 
     /**
-     * 
+     * WC HOOK
+     * https://docs.woocommerce.com/wc-apidocs/source-function-get_woocommerce_price_format.html#407
      * @param type $return
      * @param type $price
      * @param type $args
@@ -51,6 +52,7 @@ class Price_Manager {
             'price_format' => get_woocommerce_price_format()
         ))));
 
+        $negative = $price < 0;
         //custom changes
         //price already formated, now clear the old format
         $price = str_replace($thousand_separator, '', $price);
@@ -72,9 +74,37 @@ class Price_Manager {
 
         return $return;
     }
+    
+    /**
+     * WC HOOK
+     * https://docs.woocommerce.com/wc-apidocs/source-function-get_woocommerce_price_format.html#368
+     * @param type $format
+     * @param type $currency_pos
+     * @return string
+     */
+    public function price_format($format, $currency_pos) {
+        $currency_pos = Currency_Manager::get_currency_pos() ?: $currency_pos;
+        switch ($currency_pos) {
+            case 'left':
+                $format = '%1$s%2$s';
+                break;
+            case 'right':
+                $format = '%2$s%1$s';
+                break;
+            case 'left_space':
+                $format = '%1$s&nbsp;%2$s';
+                break;
+            case 'right_space':
+                $format = '%2$s&nbsp;%1$s';
+                break;
+        }
+
+        return $format;
+    }
 
     /**
-     * 
+     * WC HOOK
+     * https://docs.woocommerce.com/wc-apidocs/source-class-WC_Product_Variable.html#328
      * @param array $prices_array
      * @param WC_Product_Variable $product
      * @param bool $display

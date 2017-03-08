@@ -14,11 +14,11 @@ jQuery(function($) {
         data.currency_code = $('#currency_code').val();
         // woo_exchange_rate - global plugin object, defined in frontend header 
         jQuery.post(woo_exchange_rate.ajax_url, data, function (response) {
-            console.log('WC exchange rate plugin log: ' + response);
-            //refresh mini cart
+//            console.log('WOOER plugin log: ' + response);
+            //refresh WC mini cart
             window.sessionStorage.removeItem(storage_key);
-            //redirect
-            window.location.href = url;
+            //page reload, not good...
+            location.reload(true);
         });
     });
 });

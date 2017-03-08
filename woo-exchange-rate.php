@@ -5,7 +5,7 @@
  * 
  * Text Domain: woo-exchange-rate
  * 
- * Version: 0.2.0
+ * Version: 17.3
  * Author: Pavel Kolomeitsev
  * License: https://opensource.org/licenses/GPL-2.0 GNU Public License
  */
@@ -15,7 +15,7 @@ if (!defined('ABSPATH')) {
 }
 
 //Help handle assets
-define('WC_EXCHANGE_RATE_PLUGIN_URL', plugin_dir_url(__FILE__));
+define('WOOER_PLUGIN_URL', plugin_dir_url(__FILE__));
 
 /**
  * Includes autoloader

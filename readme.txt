@@ -63,3 +63,8 @@ Please check if WooCommerce plugin already installed before to start.
 
 = 0.2.0-beta =
 16.09.2016 - first released with beta version
+
+== Upgrade Notice ==
+
+= Upgrade from 0.2.0 to 17.3 =
+Please reactivate plugin after upgrade

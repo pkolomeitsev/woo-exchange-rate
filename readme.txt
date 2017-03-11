@@ -66,5 +66,5 @@ Please check if WooCommerce plugin already installed before to start.
 
 == Upgrade Notice ==
 
-= Upgrade from 0.2.0 to 17.3 =
-Please reactivate plugin after upgrade
+= 17.3 =
+Please reactivate plugin after upgrade.

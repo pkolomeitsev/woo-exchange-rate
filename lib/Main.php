@@ -22,6 +22,9 @@ class Main {
         Currency_Manager::init();
         // Init admin panel manager with WooCommerce settings page hooks
         if (is_admin()) {
+            // Check plugin version and update database if needed
+            wooer_upgrade();
+            
             AdminPanel_Manager::init();
         }
     }
@@ -63,5 +66,46 @@ class Main {
         $file = 'woo-exchange-rate';
         load_plugin_textdomain('woo-exchange-rate', false, $file . '/languages/');
     }
+    
+    /**
+     * Current plugin version from database
+     * @return string
+     */
+    public static function get_plugin_db_version () {
+        return get_option('wooer_plugin_version');
+    }
+    
+    /**
+     * Save plugin version in database
+     * @param string $version
+     * @return bool
+     */
+    public static function save_plugin_db_version ($version = '') {
+        if (!$version) {
+            $version = get_plugin_current_version();
+            if (!$version) {
+                return false;
+            }
+        }
+        
+        if (self::get_plugin_db_version())
+        {
+            return update_option('wooer_plugin_version', $version);
+        }
+        
+        return add_option('wooer_plugin_version', $version);
+    }
+
+    /**
+     * Current plugin version from PHP file
+     * @return string
+     */
+    public static function get_plugin_current_version () {
+        require_once ABSPATH . '/wp-admin/includes/plugin.php';
+        $plugin_data = \get_plugin_data(__DIR__ . '/../woo-exchange-rate.php');
+        return isset($plugin_data['Version']) ? $plugin_data['Version'] : '';
+    }
+    
+    public static $versionMap = ['17.3'];
 
 }

@@ -1,5 +1,6 @@
 <?php
 
+use WOOER\Main;
 use WOOER\Exchange_Rate_Model;
 
 if (!defined('ABSPATH')) {
@@ -33,6 +34,13 @@ function wooer_install() {
 	);";
     $wpdb->query($sql);
     
+    Main::save_plugin_db_version();
+}
+
+/**
+ * Upgrade function
+ */
+function wooer_upgrade(){
     wooer_dvc();
 }
 
@@ -53,24 +61,43 @@ function wooer_uninstall() {
  * Database Version Control
  */
 function wooer_dvc() {
+    $current_version = Main::get_plugin_current_version();
+    $current_db_version = Main::get_plugin_db_version();
+    
+    if (!$current_db_version) {
+        foreach (Main::$versionMap as $version) {
+            wooer_db_change_log($version);
+        }
+        Main::save_plugin_db_version($current_version);
+        return;
+    }
+    
+    if (version_compare($current_db_version, $current_version, '<')) {
+        foreach (Main::$versionMap as $version) {
+            if (version_compare($current_db_version, $version, '<')) {
+                wooer_db_change_log($version);
+            }
+        }
+        Main::save_plugin_db_version($current_version);
+    }
+
+    return;
+}
+
+/**
+ * Database change log
+ * @global type $wpdb
+ * @param type $version
+ */
+function wooer_db_change_log($version){
     global $wpdb;
     $table_name = Exchange_Rate_Model::get_instance()->get_table_name();
-    $plugin_data = get_plugin_data(__DIR__ . '/woo-exchange-rate.php');
-    $wooer_version = get_option('wooer_plugin_version');
-    
-    switch ($wooer_version) {
+    switch ($version) {
         case '17.3':
-            // skip
-            break;
-        // < 17.3
-        default:
-            add_option('wooer_plugin_version', $plugin_data['Version']);
             $sql = "ALTER TABLE " . $table_name . " ADD COLUMN `currency_pos` varchar(32) NOT NULL DEFAULT 'left'";
             $wpdb->query($sql);
             $sql = "ALTER TABLE " . $table_name . " MODIFY `currency_exchange_rate` decimal(16,4) NOT NULL";
             $wpdb->query($sql);
             break;
     }
-
-    update_option('wooer_plugin_version', $plugin_data['Version']);
 }

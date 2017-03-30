@@ -82,7 +82,7 @@ class Main {
      */
     public static function save_plugin_db_version ($version = '') {
         if (!$version) {
-            $version = get_plugin_current_version();
+            $version = self::get_plugin_current_version();
             if (!$version) {
                 return false;
             }

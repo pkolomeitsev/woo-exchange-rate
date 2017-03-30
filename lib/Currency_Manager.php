@@ -10,7 +10,7 @@ class Currency_Manager {
 
     const SESSION_KEY_CODE = 'currency_code';
     const SESSION_KEY_POS = 'currency_pos';
-    const CACHEID = 'Currency_Manager_';
+    const CACHEID = 'WOOER_Currency_Manager_';
 
     public static function init() {
 
@@ -20,8 +20,24 @@ class Currency_Manager {
         
         $self = new self();
 
+        add_filter('woocommerce_currency', array($self, 'currency'), 9999, 1);
         add_filter('woocommerce_currency_symbol', array($self, 'change_currency_symbol'), 10, 2);
         add_action('woocommerce_checkout_update_order_meta', array($self, 'checkout_update_order_meta'), 10, 2);
+    }
+    
+    /**
+     * Returns user selected currency 
+     * @param string $currency
+     * @return string
+     */
+    public function currency($currency) {
+        global $current_tab, $current_section;
+
+        if (is_admin() && ($current_tab == 'general' || $current_section == 'woo-exchange-rate')) {
+            return $currency;
+        }
+        
+        return self::get_currency_code();
     }
 
     /**
@@ -54,7 +70,7 @@ class Currency_Manager {
      * @return string
      */
     public static function get_currency_code() {
-        return isset($_SESSION[self::SESSION_KEY_CODE]) ? $_SESSION[self::SESSION_KEY_CODE] : get_woocommerce_currency();
+        return isset($_SESSION[self::SESSION_KEY_CODE]) ? $_SESSION[self::SESSION_KEY_CODE] : get_option('woocommerce_currency');
     }
 
     /**
@@ -105,7 +121,7 @@ class Currency_Manager {
      */
     public static function get_currency_pos()
     {
-        return isset($_SESSION[self::SESSION_KEY_POS]) ? $_SESSION[self::SESSION_KEY_POS] : get_woocommerce_currency();
+        return isset($_SESSION[self::SESSION_KEY_POS]) ? $_SESSION[self::SESSION_KEY_POS] : get_option('woocommerce_currency_pos');
     }
 
     /**

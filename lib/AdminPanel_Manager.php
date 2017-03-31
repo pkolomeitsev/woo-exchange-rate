@@ -17,7 +17,7 @@ class AdminPanel_Manager {
         add_filter('woocommerce_get_settings_' . Exchange_Rate_Settings_Page::TAB, array($self, 'setup_settings'), 10, 2);
 
         // WooCommerce Report tab improvements
-        add_filter('woocommerce_reports_get_order_report_data_args', array($self, 'reports_get_order_report_data_args'));
+        add_filter('woocommerce_reports_get_order_report_data_args', array($self, 'reports_get_order_report_data_args'), 10, 1);
     }
 
     public function setup_sections($sections) {

@@ -16,7 +16,6 @@ class Price_Manager {
         add_filter('wc_price', array($self, 'wc_price'), 9999, 3);
         add_filter('woocommerce_variation_prices', array($self, 'variation_prices'), 9999, 4);
         add_filter('woocommerce_price_format', array($self, 'price_format'), 9999, 2);
-        add_filter('woocommerce_get_order_currency', array($self, 'get_order_currency'), 9999, 2);
     }
 
     /**
@@ -46,7 +45,7 @@ class Price_Manager {
         extract(apply_filters('wc_price_args', wp_parse_args($args, array(
             'ex_tax_label' => false,
             //custom changes
-            'currency' => Currency_Manager::get_currency_code(),
+            'currency' => isset($args['currency']) ? $args['currency'] : Currency_Manager::get_currency_code(),
             'decimal_separator' => wc_get_price_decimal_separator(),
             'thousand_separator' => wc_get_price_thousand_separator(),
             'decimals' => wc_get_price_decimals(),
@@ -119,16 +118,5 @@ class Price_Manager {
         }
 
         return $prices_array;
-    }
-    
-    /**
-     * WC HOOK
-     * https://docs.woocommerce.com/wc-apidocs/source-class-WC_Abstract_Order.html
-     * @param string $currency
-     * @param WC_Abstract_Order $order
-     * @return string
-     */
-    public function get_order_currency($currency, $order) {
-        return Currency_Manager::get_currency_code();
     }
 }

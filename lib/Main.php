@@ -20,6 +20,8 @@ class Main {
         Price_Manager::init();
         // Init currency manager with WooCommerce currency hooks
         Currency_Manager::init();
+        // Init order manager with WooCommerce order hooks
+        Order_Manager::init();        
         // Init admin panel manager with WooCommerce settings page hooks
         if (is_admin()) {
             // Check plugin version and update database if needed

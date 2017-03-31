@@ -41,7 +41,7 @@ class Currency_Manager {
     }
 
     /**
-     * For some currecies it is better to use word instead of symbol 
+     * For some currencies it is better to use word instead of symbol 
      * @param string $currency_symbol
      * @param string $currency
      * @return string
@@ -54,15 +54,6 @@ class Currency_Manager {
                 return 'руб.';
         }
         return $currency_symbol;
-    }
-
-    /**
-     * Update customer checkout page
-     * @param int $order_id
-     * @param array $posted Array of posted form data
-     */
-    public function checkout_update_order_meta($order_id, $posted) {
-        update_post_meta($order_id, '_order_currency', self::get_currency_code());
     }
 
     /**
@@ -101,7 +92,7 @@ class Currency_Manager {
     }
 
     /**
-     * 
+     * Currency symbol position dropdown data
      * @return array
      */
     public static function wooer_currency_pos_list($currency_symbol = '')

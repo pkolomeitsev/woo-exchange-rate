@@ -63,7 +63,7 @@ class AdminPanel_Manager {
     }
     
     /**
-     * 
+     * Admin bar currency switcher
      * @param WP_Admin_Bar  $wp_admin_bar
      * @return type
      */
@@ -78,7 +78,7 @@ class AdminPanel_Manager {
         $wc_all_currencies = get_woocommerce_currencies();
         foreach ($currencies as $row) {
             $code = $row['currency_code'];
-            $currencyName = $list_data[$code] = $wc_all_currencies[$code] . ' - ' . get_woocommerce_currency_symbol($code);
+            $list_data[$code] = $wc_all_currencies[$code] . ' - ' . get_woocommerce_currency_symbol($code);
         }
 
         $args = array(

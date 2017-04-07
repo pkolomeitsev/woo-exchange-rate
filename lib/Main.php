@@ -11,10 +11,12 @@ class Main {
     public function __construct() {
         // Load translations
         add_action('plugins_loaded', array($this, 'load_textdomain'));
-        // Register WP widget (Frontend)
-        add_action('wp_enqueue_scripts', array($this, 'register_js'));
+        // Register JS
+        add_action('wp_enqueue_scripts', array($this, 'register_js')); //front
+        add_action('admin_enqueue_scripts', array($this, 'register_js'));//admin
         add_action('wp_ajax_change_currency_action', array($this, 'change_currency_action'));
         add_action('wp_ajax_nopriv_change_currency_action', array($this, 'change_currency_action'));
+        // Register WP widget
         add_action('widgets_init', array($this, 'register_widgets'));
         // Init price manager with WooCommerce price hooks
         Price_Manager::init();
@@ -108,6 +110,10 @@ class Main {
         return isset($plugin_data['Version']) ? $plugin_data['Version'] : '';
     }
     
+    /**
+     * Plugin database versions
+     * @var array 
+     */
     public static $versionMap = ['17.3'];
 
 }

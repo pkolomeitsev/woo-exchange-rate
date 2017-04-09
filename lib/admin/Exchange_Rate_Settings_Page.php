@@ -176,7 +176,7 @@ class Exchange_Rate_Settings_Page {
             \WC_Admin_Settings::add_message(__('Exchange rate successfully removed', 'woo-exchange-rate'));
         }
         if (isset($_GET['saved']) && 1 == $_GET['saved']) {
-            \WC_Admin_Settings::add_message(__('Your settings have been saved', 'woocommerce'));
+            \WC_Admin_Settings::add_message(__('Your settings have been saved', 'woo-exchange-rate'));
         }
         
         \WC_Admin_Settings::show_messages();

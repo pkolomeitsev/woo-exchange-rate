@@ -1,6 +1,6 @@
 jQuery(function($) {
-
-    var currency_code = $('#currency_code').val();
+    var wooer_widget_id = '#wooer_currency_code';
+    var currency_code = $(wooer_widget_id).val();
     var data = {
         'action': 'change_currency_action',
         'currency_code': currency_code
@@ -9,7 +9,7 @@ jQuery(function($) {
     //global wc_cart_fragments_params
     var storage_key = (typeof wc_cart_fragments_params != 'undefined') ? wc_cart_fragments_params.fragment_name : null;
 
-    $('#currency_code').change(function (e) {
+    $(wooer_widget_id).change(function (e) {
         currencyRedirectCallback(e.target.value);
     });
     

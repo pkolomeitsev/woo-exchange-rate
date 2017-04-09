@@ -13,6 +13,7 @@ class Price_Manager {
         $self = new self();
 
         add_filter('woocommerce_get_price', array($self, 'get_price'), 9999, 2);
+        add_filter('woocommerce_get_regular_price', array($self, 'get_regular_price'), 9999, 2);
         add_filter('wc_price', array($self, 'wc_price'), 9999, 3);
         add_filter('woocommerce_variation_prices', array($self, 'variation_prices'), 9999, 4);
         add_filter('woocommerce_price_format', array($self, 'price_format'), 9999, 2);
@@ -31,6 +32,16 @@ class Price_Manager {
         $price = round($price * $rate, $precision);
 
         return $price;
+    }
+    
+    /**
+     * 
+     * @param type $price
+     * @param type $product
+     * @return type
+     */
+    public function get_regular_price($price, $product = null) {
+        return $this->get_price($price);
     }
 
     /**

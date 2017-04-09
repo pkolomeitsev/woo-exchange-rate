@@ -27,16 +27,20 @@ class Currency_Manager {
     
     /**
      * Returns user selected currency 
-     * @param string $currency
+     * @param string $currency_code
      * @return string
      */
-    public function currency($currency) {
-        global $current_tab, $current_section;
-
-        if (is_admin() && ($current_tab == 'general' || $current_section == 'woo-exchange-rate')) {
-            return $currency;
+    public function currency($currency_code) {
+        global $current_tab, $current_section, $current_screen;
+        if (is_admin() && $current_screen && (
+            $current_tab == 'general' // WC generall settings page
+            || $current_section == 'woo-exchange-rate' // WOOER settings page
+            || $current_screen->post_type == 'product' // Product screen (New/Edit) 
+            )
+        ) {
+            return $currency_code;
         }
-        
+
         return self::get_currency_code();
     }
 

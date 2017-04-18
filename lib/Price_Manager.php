@@ -16,7 +16,7 @@ class Price_Manager {
         add_filter('woocommerce_product_get_regular_price', array($self, 'get_regular_price'), 9999, 2);
         add_filter('woocommerce_product_get_sale_price', array($self, 'get_sale_price'), 9999, 2);
         add_filter('woocommerce_product_variation_get_price', array($self, 'variation_get_price'), 9999, 2);
-//        add_filter('woocommerce_product_variation_get_regular_price', array($self, 'variation_get_regular_price'), 9999, 2);
+        add_filter('woocommerce_product_variation_get_regular_price', array($self, 'variation_get_regular_price'), 9999, 2);
 //        add_filter('woocommerce_available_variation', array($self, 'available_variation'), 9999, 3);
         add_filter('wc_price', array($self, 'wc_price'), 9999, 3);
         add_filter('woocommerce_variation_prices', array($self, 'variation_prices'), 9999, 4);

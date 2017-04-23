@@ -9,7 +9,7 @@ if (!defined('ABSPATH')) {
 class AdminPanel_Manager {
     
     public static function init() {
-
+        
         $self = new self();
 
         // Create the section beneath the products tab (Admin panel)
@@ -17,7 +17,10 @@ class AdminPanel_Manager {
         add_filter('woocommerce_get_settings_' . Exchange_Rate_Settings_Page::TAB, array($self, 'setup_settings'), 10, 2);
 
         // WooCommerce Report tab improvements
-        add_filter('woocommerce_reports_get_order_report_data_args', array($self, 'reports_get_order_report_data_args'));
+        add_filter('woocommerce_reports_get_order_report_data_args', array($self, 'reports_get_order_report_data_args'), 10, 1);
+        
+        // Adding toolbar menu
+        add_action('admin_bar_menu', array($self, 'admin_bar_menu'), 999);
     }
 
     public function setup_sections($sections) {
@@ -58,5 +61,44 @@ class AdminPanel_Manager {
         //$args['debug'] = true;
         return $args;
     }
+    
+    /**
+     * Admin bar currency switcher
+     * @param WP_Admin_Bar  $wp_admin_bar
+     * @return type
+     */
+    public function admin_bar_menu($wp_admin_bar){
+        $list_data = array();
+        $currencies = Exchange_Rate_Model::get_instance()->select(array('currency_code'));
 
+        if (!$currencies) {
+            return false;
+        }
+        $current = Currency_Manager::get_currency_code();
+        $wc_all_currencies = get_woocommerce_currencies();
+        foreach ($currencies as $row) {
+            $code = $row['currency_code'];
+            $list_data[$code] = $wc_all_currencies[$code] . ' - ' . get_woocommerce_currency_symbol($code);
+        }
+
+        $args = array(
+            'id' => 'wooer_currency',
+            'title' => sprintf('%s (%s)', __('Currency', 'woocommerce'),  get_woocommerce_currency_symbol($current)),
+        );
+        $wp_admin_bar->add_node($args);
+
+        foreach ($list_data as $code => $value) {
+            $args = array(
+                'id' => $code,
+                'title' => $value,
+                'parent' => 'wooer_currency',
+                'href' => '#',
+                'meta' => array('onclick' => sprintf('currencyRedirectCallback("%s")', $code)),
+            );
+
+            $wp_admin_bar->add_node($args);
+        }
+        
+        return true;
+    }
 }

@@ -47,7 +47,7 @@ class Currency_List_Widget extends \WC_Widget {
 
         $settings[] = array(
             'name' => __('Currency', 'woocommerce'),
-            'id' => 'currency_code',
+            'id' => 'wooer_currency_code',
             'type' => 'select',
             'options' => $list_data,
             'default' => Currency_Manager::get_currency_code(),

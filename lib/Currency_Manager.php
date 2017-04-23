@@ -10,7 +10,7 @@ class Currency_Manager {
 
     const SESSION_KEY_CODE = 'currency_code';
     const SESSION_KEY_POS = 'currency_pos';
-    const CACHEID = 'Currency_Manager_';
+    const CACHEID = 'WOOER_Currency_Manager_';
 
     public static function init() {
 
@@ -20,12 +20,32 @@ class Currency_Manager {
         
         $self = new self();
 
+        add_filter('woocommerce_currency', array($self, 'currency'), 9999, 1);
         add_filter('woocommerce_currency_symbol', array($self, 'change_currency_symbol'), 10, 2);
         add_action('woocommerce_checkout_update_order_meta', array($self, 'checkout_update_order_meta'), 10, 2);
     }
+    
+    /**
+     * Returns user selected currency 
+     * @param string $currency_code
+     * @return string
+     */
+    public function currency($currency_code) {
+        global $current_tab, $current_section, $current_screen;
+        if (is_admin() && $current_screen && (
+            $current_tab == 'general' // WC generall settings page
+            || $current_section == 'woo-exchange-rate' // WOOER settings page
+            || $current_screen->post_type == 'product' // Product screen (New/Edit) 
+            )
+        ) {
+            return $currency_code;
+        }
+
+        return self::get_currency_code();
+    }
 
     /**
-     * For some currecies it is better to use word instead of symbol 
+     * For some currencies it is better to use word instead of symbol 
      * @param string $currency_symbol
      * @param string $currency
      * @return string
@@ -41,20 +61,11 @@ class Currency_Manager {
     }
 
     /**
-     * Update customer checkout page
-     * @param int $order_id
-     * @param array $posted Array of posted form data
-     */
-    public function checkout_update_order_meta($order_id, $posted) {
-        update_post_meta($order_id, '_order_currency', self::get_currency_code());
-    }
-
-    /**
      * Get currency code from session
      * @return string
      */
     public static function get_currency_code() {
-        return isset($_SESSION[self::SESSION_KEY_CODE]) ? $_SESSION[self::SESSION_KEY_CODE] : get_woocommerce_currency();
+        return isset($_SESSION[self::SESSION_KEY_CODE]) ? $_SESSION[self::SESSION_KEY_CODE] : get_option('woocommerce_currency');
     }
 
     /**
@@ -85,7 +96,7 @@ class Currency_Manager {
     }
 
     /**
-     * 
+     * Currency symbol position dropdown data
      * @return array
      */
     public static function wooer_currency_pos_list($currency_symbol = '')
@@ -105,7 +116,7 @@ class Currency_Manager {
      */
     public static function get_currency_pos()
     {
-        return isset($_SESSION[self::SESSION_KEY_POS]) ? $_SESSION[self::SESSION_KEY_POS] : get_woocommerce_currency();
+        return isset($_SESSION[self::SESSION_KEY_POS]) ? $_SESSION[self::SESSION_KEY_POS] : get_option('woocommerce_currency_pos');
     }
 
     /**

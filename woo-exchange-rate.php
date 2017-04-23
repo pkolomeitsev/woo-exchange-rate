@@ -5,7 +5,7 @@
  * 
  * Text Domain: woo-exchange-rate
  * 
- * Version: 17.3
+ * Version: 17.4
  * Author: Pavel Kolomeitsev
  * License: https://opensource.org/licenses/GPL-2.0 GNU Public License
  */
